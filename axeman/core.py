@@ -40,7 +40,7 @@ async def download_worker(session, log_info, work_deque, download_queue):
         for x in range(3):
             try:
                 async with session.get(certlib.DOWNLOAD.format(log_info['url'], start, end)) as response:
-                    entry_list = await response.json()
+                    entry_list = await response.json(content_type=None)
                     logging.debug("[{}] Retrieved blocks {}-{}...".format(log_info['url'], start, end))
                     break
             except Exception as e:
